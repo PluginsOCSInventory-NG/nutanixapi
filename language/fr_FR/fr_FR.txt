@@ -1,0 +1,4 @@
+37000 Inventaire Nutanix
+37001 Cluster
+37002 UUID Cluster
+37003 Nom Cluster

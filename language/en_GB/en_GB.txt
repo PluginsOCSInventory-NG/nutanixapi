@@ -1,0 +1,27 @@
+37000 Nutanix Inventory
+37001 Cluster
+37002 Cluster UUID
+37003 Cluster Name
+37004 Boot
+37005 Resources
+37006 CPU Threads
+37007 vCPU Number
+37008 Socket Number
+37009 Is protected ?
+37010 Memory
+37011 Hardware timezone
+37012 Powerstate
+37013 Hypervisor type
+37014 Boot type
+37015 Nic type
+37016 Nic UUID
+37017 Nic VLAN Mode
+37018 Nic Mac Address
+37019 Nic subnet name
+37020 Is active ?
+37021 Disk UUID
+37022 Disk Type
+37023 Disk Adapter
+37024 Disk Kind
+37025 Disk Size (MB)
+37026 Disk mib size
