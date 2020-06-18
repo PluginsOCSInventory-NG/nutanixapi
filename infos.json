@@ -3,7 +3,7 @@
     "displayName" : "Nutanix API",
     "author" : ["Gilles DUBOIS"],
     "contributor" : ["Robert Kenney"],
-    "supportedAgent" : ["Linux"],
+    "supportedAgent" : ["Unix"],
     "version" : "1.0",
     "licence" : "GPLv2",
     "description" : {
