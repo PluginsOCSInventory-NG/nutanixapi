@@ -7,7 +7,7 @@ function extension_install_nutanixapi()
 {
     $commonObject = new ExtensionCommon;
 
-    $commonObject -> sqlQuery("DROP TABLE IF EXISTS `nutanix` , `nutanixresources` , `nutanixboot` , `nutanixdisk` , `nutanixnic`;");
+    $commonObject -> sqlQuery("DROP TABLE IF EXISTS `nutanix` , `nutanixresources` , `nutanixboot` , `nutanixdisk` , `nutanixnic`, `nutanixhost`, `nutanixcluster`;");
 
     $commonObject -> sqlQuery("CREATE TABLE `nutanix` (
         `ID` INT(11) NOT NULL AUTO_INCREMENT,
@@ -70,6 +70,47 @@ function extension_install_nutanixapi()
         `NICACTIVE` VARCHAR(255) DEFAULT NULL,
         PRIMARY KEY  (`ID`,`HARDWARE_ID`)
         ) ENGINE=INNODB;");
+
+    $commonObject -> sqlQuery("CREATE TABLE `nutanixhost` (
+        `ID` INT(11) NOT NULL AUTO_INCREMENT,
+        `HARDWARE_ID` INT(11) NOT NULL,
+        `HOSTUUID` VARCHAR(255) DEFAULT NULL,
+        `HOSTSTATUS` VARCHAR(255) DEFAULT NULL,
+        `HOSTNAME` VARCHAR(255) DEFAULT NULL,
+        `HOSTSERIAL` VARCHAR(255) DEFAULT NULL,
+        `HOSTIPMI` VARCHAR(255) DEFAULT NULL,
+        `HOSTTYPE` VARCHAR(255) DEFAULT NULL,
+        `HOSTCPU` VARCHAR(255) DEFAULT NULL,
+        `HOSTCPUSOCKET` VARCHAR(255) DEFAULT NULL,
+        `HOSTCPUNUM` VARCHAR(255) DEFAULT NULL,
+        `HOSTMEMORY` VARCHAR(255) DEFAULT NULL,
+        `HOSTHVVMS` VARCHAR(255) DEFAULT NULL,
+        `HOSTHVIP` VARCHAR(255) DEFAULT NULL,
+        `HOSTHVNAME` VARCHAR(255) DEFAULT NULL,
+        PRIMARY KEY  (`ID`,`HARDWARE_ID`)
+        ) ENGINE=INNODB;");
+
+    $commonObject -> sqlQuery("CREATE TABLE `nutanixcluster` (
+        `ID` INT(11) NOT NULL AUTO_INCREMENT,
+        `HARDWARE_ID` INT(11) NOT NULL,
+        `CLUSTERUUID` VARCHAR(255) DEFAULT NULL,
+        `CLUSTERSTATUS` VARCHAR(255) DEFAULT NULL,
+        `CLUSTERNAME` VARCHAR(255) DEFAULT NULL,
+        `CLUSTERENCRYPTION` VARCHAR(255) DEFAULT NULL,
+        `CLUSTERVERBOSITY` VARCHAR(255) DEFAULT NULL,
+        `CLUSTERRUNDFACTOR` VARCHAR(255) DEFAULT NULL,
+        `CLUSTERARCH` VARCHAR(255) DEFAULT NULL,
+        `CLUSTERAVAILABLE` VARCHAR(255) DEFAULT NULL,
+        `CLUSTERBUILDTYPE` VARCHAR(255) DEFAULT NULL,
+        `CLUSTERBUILDVERSION` VARCHAR(255) DEFAULT NULL,
+        `CLUSTERBUILDLTS` VARCHAR(255) DEFAULT NULL,
+        `CLUSTERTZ` VARCHAR(255) DEFAULT NULL,
+        `CLUSTEREXTNET` VARCHAR(255) DEFAULT NULL,
+        `CLUSTERINTNET` VARCHAR(255) DEFAULT NULL,
+        `CLUSTEREXTIP` VARCHAR(255) DEFAULT NULL,
+        PRIMARY KEY  (`ID`,`HARDWARE_ID`)
+        ) ENGINE=INNODB;");
+
 }
 
 /**
@@ -78,7 +119,7 @@ function extension_install_nutanixapi()
 function extension_delete_nutanixapi()
 {
     $commonObject = new ExtensionCommon;
-    $commonObject -> sqlQuery("DROP TABLE IF EXISTS `nutanix` , `nutanixresources` , `nutanixboot` , `nutanixdisk` , `nutanixnic`;");
+    $commonObject -> sqlQuery("DROP TABLE IF EXISTS `nutanix` , `nutanixresources` , `nutanixboot` , `nutanixdisk` , `nutanixnic`, `nutanixhost`, `nutanixcluster`;");
 }
 
 /**

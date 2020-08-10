@@ -32,9 +32,26 @@
         $tab_options=$protectedPost;
         $tab_options['form_name']=$form_name;
         $tab_options['table_name']=$table_name;
+
+        //definition of onglet
+        $def_onglets['VMS'] = $l->g(37060);
+        $def_onglets['HOSTS'] = $l->g(37061); 
+        $def_onglets['CLUSTERS'] = $l->g(37062); 
+
+        //default => first onglet
+        if ($protectedPost['onglet'] == "") {
+            $protectedPost['onglet'] = "VMS";
+        }
+
         echo open_form($form_name);
 
-        $list_fields=array(
+        //show first ligne of onglet
+        show_tabs($def_onglets,$form_name,"onglet",true);
+
+        echo '<div class="col col-md-10">';
+
+        if($protectedPost['onglet'] == "VMS"){
+            $list_fields=array(
                 $l->g(1268) => "VMUUID",
                 $l->g(81) => "VMSTATUS",
                 $l->g(49) => "VMNAME",
@@ -42,19 +59,62 @@
                 $l->g(37001) => "VMCLUSTER",
                 $l->g(37002) => "VMCLUSTERUUID",
                 $l->g(37003) => "VMCLUSTERNAME",
-        );
-        
-        $tab_options['LIEN_LBL'][$l->g(49)] = 'index.php?' . PAG_INDEX . '=ms_nutanix&details=';
-        $tab_options['LIEN_CHAMP'][$l->g(49)] = 'VMUUID';
+            );
+            
+            $tab_options['LIEN_LBL'][$l->g(49)] = 'index.php?' . PAG_INDEX . '=ms_nutanix&details=';
+            $tab_options['LIEN_CHAMP'][$l->g(49)] = 'VMUUID';
+
+            $sql['SQL'] = 'SELECT * FROM nutanix';
+        }
+
+        if($protectedPost['onglet'] == "HOSTS"){
+            $list_fields=array(
+                $l->g(1268) => "HOSTUUID",
+                $l->g(81) => "HOSTSTATUS",
+                $l->g(49) => "HOSTNAME",
+                $l->g(36) => "HOSTSERIAL",
+                $l->g(37030) => "HOSTIPMI",
+                $l->g(66) => "HOSTTYPE",
+                $l->g(350) => "HOSTCPU",
+                $l->g(351) => "HOSTCPUSOCKET",
+                $l->g(1317) => "HOSTCPUNUM",
+                $l->g(26) => "HOSTMEMORY",
+                $l->g(37031) => "HOSTHVVMS",
+                $l->g(37032) => "HOSTHVIP",
+                $l->g(37033) => "HOSTHVNAME",
+            );
+
+            $sql['SQL'] = 'SELECT * FROM nutanixhost';
+        }
+
+        if($protectedPost['onglet'] == "CLUSTERS"){
+            $list_fields=array(
+                $l->g(1268) => "CLUSTERUUID",
+                $l->g(81) => "CLUSTERSTATUS",
+                $l->g(49) => "CLUSTERNAME",
+                $l->g(37040) => "CLUSTERENCRYPTION",
+                $l->g(37041) => "CLUSTERVERBOSITY",
+                $l->g(37042) => "CLUSTERRUNDFACTOR",
+                $l->g(1247) => "CLUSTERARCH",
+                $l->g(37043) => "CLUSTERAVAILABLE",
+                $l->g(37044) => "CLUSTERBUILDTYPE",
+                $l->g(37045) => "CLUSTERBUILDVERSION",
+                $l->g(37046) => "CLUSTERBUILDLTS",
+                $l->g(37047) => "CLUSTERTZ",
+                $l->g(37048) => "CLUSTEREXTNET",
+                $l->g(37049) => "CLUSTERINTNET",
+                $l->g(37050) => "CLUSTEREXTIP",
+            );
+
+            $sql['SQL'] = 'SELECT * FROM nutanixcluster';
+        }
 
         $list_col_cant_del=$list_fields;
         $default_fields= $list_fields;
-        $sql=prepare_sql_tab($list_fields);
-        $sql['SQL']  .= "FROM nutanix";
-        array_push($sql['ARG'],$systemid);
-        $tab_options['ARG_SQL']=$sql['ARG'];
-        $tab_options['ARG_SQL_COUNT']=$systemid;
+        
         ajaxtab_entete_fixe($list_fields,$default_fields,$tab_options,$list_col_cant_del);
+
+        echo "</div>";
         echo close_form();
     }else{
         //form name

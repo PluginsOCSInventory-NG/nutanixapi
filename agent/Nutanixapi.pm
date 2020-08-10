@@ -26,6 +26,8 @@ my @auth_hashes = (
 # API Endpoint list
 my %nutanix_api_references = (
     "nutanix_vms_list" => "api/nutanix/v3/vms/list",
+    "nutanix_hosts_list" => "api/nutanix/v3/hosts/list",
+    "nutanix_clusters_list" => "api/nutanix/v3/clusters/list",
 );
 
 ####### Create method ########
@@ -75,7 +77,72 @@ sub nutanixapi_inventory_handler {
         my $totalvm_number = 0;
         my $current_offset = 0;
 
-        $vmlist_return = send_api_query($server_url, $nutanix_api_references{"nutanix_vms_list"}, $auth_digest, $current_offset);
+        ##
+        #   Clusters Inventory
+        ##
+        $logger->debug("Nutanix API Clusters inventory");
+
+        $clusterlist_return = send_api_query($server_url, $nutanix_api_references{"nutanix_clusters_list"}, $auth_digest, $current_offset, "cluster");
+
+        foreach (@{$clusterlist_return->{'entities'}}){
+            # Logger
+            $logger->debug("Starting nutanix infos retrival for cluster ".$_->{'metadata'}->{'uuid'});
+
+            push @{$common->{xmltags}->{NUTANIXCLUSTER}},
+            {
+                CLUSTERUUID => [$_->{'metadata'}->{'uuid'}],
+                CLUSTERSTATUS => [$_->{'status'}->{'state'}],
+                CLUSTERNAME => [$_->{'status'}->{'name'}],
+                CLUSTERENCRYPTION => [$_->{'status'}->{'resources'}->{'config'}->{'encryption_status'}],
+                CLUSTERVERBOSITY => [$_->{'status'}->{'resources'}->{'config'}->{'supported_information_verbosity'}],
+                CLUSTERRUNDFACTOR => [$_->{'status'}->{'resources'}->{'config'}->{'redundancy_factor'}],
+                CLUSTERARCH => [$_->{'status'}->{'resources'}->{'config'}->{'cluster_arch'}],
+                CLUSTERAVAILABLE => [manage_json_pp_bool($_->{'status'}->{'resources'}->{'config'}->{'is_available'})],
+                CLUSTERBUILDTYPE => [$_->{'status'}->{'resources'}->{'config'}->{'build'}->{'build_type'}],
+                CLUSTERBUILDVERSION => [$_->{'status'}->{'resources'}->{'config'}->{'build'}->{'version'}],
+                CLUSTERBUILDLTS => [manage_json_pp_bool($_->{'status'}->{'resources'}->{'config'}->{'build'}->{'is_long_term_support'})],
+                CLUSTERTZ => [$_->{'status'}->{'resources'}->{'config'}->{'timezone'}],
+                CLUSTEREXTNET => [$_->{'status'}->{'resources'}->{'network'}->{'external_subnet'}],
+                CLUSTERINTNET => [$_->{'status'}->{'resources'}->{'network'}->{'internal_subnet'}],
+                CLUSTEREXTIP => [$_->{'status'}->{'resources'}->{'network'}->{'external_ip'}],
+            };
+        }
+
+        ##
+        #   Hosts Inventory
+        ##
+        $logger->debug("Nutanix API Hosts inventory");
+
+        $hostlist_return = send_api_query($server_url, $nutanix_api_references{"nutanix_hosts_list"}, $auth_digest, $current_offset, "host");
+
+        foreach (@{$hostlist_return->{'entities'}}){
+            # Logger
+            $logger->debug("Starting nutanix infos retrival for host ".$_->{'metadata'}->{'uuid'});
+
+            push @{$common->{xmltags}->{NUTANIXHOST}},
+            {
+                HOSTUUID => [$_->{'metadata'}->{'uuid'}],
+                HOSTSTATUS => [$_->{'status'}->{'state'}],
+                HOSTNAME => [$_->{'status'}->{'name'}],
+                HOSTSERIAL => [$_->{'status'}->{'resources'}->{'serial_number'}],
+                HOSTIPMI => [$_->{'status'}->{'resources'}->{'ipmi'}->{'ip'}],
+                HOSTTYPE => [$_->{'status'}->{'resources'}->{'host_type'}],
+                HOSTCPU => [$_->{'status'}->{'resources'}->{'cpu_model'}],
+                HOSTCPUSOCKET => [$_->{'status'}->{'resources'}->{'num_cpu_sockets'}],
+                HOSTCPUNUM => [$_->{'status'}->{'resources'}->{'num_cpu_cores'}],
+                HOSTMEMORY => [$_->{'status'}->{'resources'}->{'memory_capacity_mib'}],
+                HOSTHVVMS => [$_->{'status'}->{'resources'}->{'hypervisor'}->{'num_vms'}],
+                HOSTHVIP => [$_->{'status'}->{'resources'}->{'hypervisor'}->{'ip'}],
+                HOSTHVNAME => [$_->{'status'}->{'resources'}->{'hypervisor'}->{'hypervisor_full_name'}],
+            };
+        }
+
+        ##
+        #   VMS Inventory
+        ##
+        $logger->debug("Nutanix API VMs inventory");
+
+        $vmlist_return = send_api_query($server_url, $nutanix_api_references{"nutanix_vms_list"}, $auth_digest, $current_offset, "vm");
 
         if(exists $vmlist_return->{'metadata'}){
             $totalvm_number = $vmlist_return->{'metadata'}->{'total_matches'};
@@ -91,7 +158,7 @@ sub nutanixapi_inventory_handler {
 
             for (my $i = 1; $i <= $iteration_number; $i++) {
 
-                $vmlist_return = send_api_query($server_url, $nutanix_api_references{"nutanix_vms_list"}, $auth_digest, $current_offset);
+                $vmlist_return = send_api_query($server_url, $nutanix_api_references{"nutanix_vms_list"}, $auth_digest, $current_offset, "vm");
 
                 foreach (@{$vmlist_return->{'entities'}}){
 
@@ -214,13 +281,14 @@ sub send_api_query
     my $server_endpoint;
     my $restpath;
     my $auth_dig;
+    my $kind;
     my $req;
     my $resp;
     my $message;
     my $offset;
 
     # Get passed arguments
-    ($server_endpoint, $restpath, $auth_dig, $offset) = @_;
+    ($server_endpoint, $restpath, $auth_dig, $offset, $kind) = @_;
 
     $lwp_useragent = LWP::UserAgent->new;
 
@@ -228,7 +296,7 @@ sub send_api_query
     my $header = ['Authorization' => "Basic $auth_dig", 'Content-Type' => 'application/json; charset=UTF-8', 'Cache-Control' => 'no-cache'];
 
     my $post_data = {
-        kind => "vm",
+        kind => $kind,
         length => 500,
         offset => $offset,
     };

@@ -25,3 +25,21 @@
 37024 Disk Kind
 37025 Disk Size (MB)
 37026 Disk mib size
+37030 IPMI IP
+37031 VM Number
+37032 Hypervisor IP
+37033 Hypervisor Name
+37040 Encryption
+37041 Verbosity
+37042 Redundance factor
+37043 Is available ?
+37044 Environement
+37045 Version
+37046 Is LTS ?
+37047 Timezone
+37048 Ext network
+37049 Int network 
+37050 Cluster IP
+37060 VMs List
+37061 Hosts list
+37062 Clusters list

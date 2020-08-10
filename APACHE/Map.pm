@@ -106,4 +106,56 @@ $DATA_MAP{nutanixnic} = {
 	}
 };
 
+$DATA_MAP{nutanixhost} = {
+	mask => 0,
+	multi => 1,
+	auto => 1,
+	delOnReplace => 1,
+	sortBy => 'HOSTUUID',
+	writeDiff => 0,
+	cache => 0,
+	fields => {
+        HOSTUUID => {},
+        HOSTSTATUS => {},
+        HOSTNAME => {},
+        HOSTSERIAL => {},
+        HOSTIPMI => {},
+        HOSTTYPE => {},
+        HOSTCPU => {},
+		HOSTCPUSOCKET => {},
+		HOSTCPUNUM => {},
+		HOSTMEMORY => {},
+		HOSTHVVMS => {},
+		HOSTHVIP => {},
+		HOSTHVNAME => {}
+	}
+};
+
+$DATA_MAP{nutanixcluster} = {
+	mask => 0,
+	multi => 1,
+	auto => 1,
+	delOnReplace => 1,
+	sortBy => 'CLUSTERUUID',
+	writeDiff => 0,
+	cache => 0,
+	fields => {
+        CLUSTERUUID => {},
+        CLUSTERSTATUS => {},
+        CLUSTERNAME => {},
+        CLUSTERENCRYPTION => {},
+        CLUSTERVERBOSITY => {},
+        CLUSTERRUNDFACTOR => {},
+        CLUSTERARCH => {},
+		CLUSTERAVAILABLE => {},
+		CLUSTERBUILDTYPE => {},
+		CLUSTERBUILDVERSION => {},
+		CLUSTERBUILDLTS => {},
+		CLUSTERTZ => {},
+		CLUSTEREXTNET => {},
+		CLUSTERINTNET => {},
+		CLUSTEREXTIP => {}
+	}
+};
+
 1;
