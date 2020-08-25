@@ -23,13 +23,13 @@ $DATA_MAP{nutanix} = {
 	writeDiff => 0,
 	cache => 0,
 	fields => {
-        VMUUID => {},
-        VMSTATUS => {},
-        VMNAME => {},
-        VMDESC => {},
-        VMCLUSTER => {},
-        VMCLUSTERUUID => {},
-        VMCLUSTERNAME => {}
+	VMUUID => {},
+	VMSTATUS => {},
+	VMNAME => {},
+	VMDESC => {},
+	VMCLUSTER => {},
+	VMCLUSTERUUID => {},
+	VMCLUSTERNAME => {}
 	}
 };
 
@@ -42,15 +42,15 @@ $DATA_MAP{nutanixresources} = {
 	writeDiff => 0,
 	cache => 0,
 	fields => {
-        VMUUID => {},
-        RESTHREAD => {},
-        RESVCPU => {},
-        RESSOCKET => {},
-        RESPROTECTED => {},
-        RESMEMORY => {},
-        RESHWTIMEZONE => {},
-        RESPOWERSTATE => {},
-        RESHYPERVISORTYPE => {}
+	VMUUID => {},
+	RESTHREAD => {},
+	RESVCPU => {},
+	RESSOCKET => {},
+	RESPROTECTED => {},
+	RESMEMORY => {},
+	RESHWTIMEZONE => {},
+	RESPOWERSTATE => {},
+	RESHYPERVISORTYPE => {}
 	}
 };
 
@@ -63,8 +63,8 @@ $DATA_MAP{nutanixboot} = {
 	writeDiff => 0,
 	cache => 0,
 	fields => {
-        VMUUID => {},
-        BOOTTYPE => {}
+	VMUUID => {},
+	BOOTTYPE => {}
 	}
 };
 
@@ -77,13 +77,13 @@ $DATA_MAP{nutanixdisk} = {
 	writeDiff => 0,
 	cache => 0,
 	fields => {
-        VMUUID => {},
-        DISKUUID => {},
-        DISKTYPE => {},
-        DISKADAPTER => {},
-        DISKKIND => {},
-        DISKSIZE => {},
-        DISKSIZEMIB => {}
+	VMUUID => {},
+	DISKUUID => {},
+	DISKTYPE => {},
+	DISKADAPTER => {},
+	DISKKIND => {},
+	DISKSIZE => {},
+	DISKSIZEMIB => {}
 	}
 };
 
@@ -96,13 +96,13 @@ $DATA_MAP{nutanixnic} = {
 	writeDiff => 0,
 	cache => 0,
 	fields => {
-        VMUUID => {},
-        NICTYPE => {},
-        NICUUID => {},
-        NICVLANMODE => {},
-        NICMACADDR => {},
-        NICSUBNAME => {},
-        NICACTIVE => {}
+	VMUUID => {},
+	NICTYPE => {},
+	NICUUID => {},
+	NICVLANMODE => {},
+	NICMACADDR => {},
+	NICSUBNAME => {},
+	NICACTIVE => {}
 	}
 };
 
@@ -115,19 +115,21 @@ $DATA_MAP{nutanixhost} = {
 	writeDiff => 0,
 	cache => 0,
 	fields => {
-        HOSTUUID => {},
-        HOSTSTATUS => {},
-        HOSTNAME => {},
-        HOSTSERIAL => {},
-        HOSTIPMI => {},
-        HOSTTYPE => {},
-        HOSTCPU => {},
-		HOSTCPUSOCKET => {},
-		HOSTCPUNUM => {},
-		HOSTMEMORY => {},
-		HOSTHVVMS => {},
-		HOSTHVIP => {},
-		HOSTHVNAME => {}
+	HOSTUUID => {},
+	HOSTSTATUS => {},
+	HOSTNAME => {},
+	HOSTCLUSTERN => {},
+	HOSTCLUSTERID => {},
+	HOSTSERIAL => {},
+	HOSTIPMI => {},
+	HOSTTYPE => {},
+	HOSTCPU => {},
+	HOSTCPUSOCKET => {},
+	HOSTCPUNUM => {},
+	HOSTMEMORY => {},
+	HOSTHVVMS => {},
+	HOSTHVIP => {},
+	HOSTHVNAME => {}
 	}
 };
 
@@ -140,21 +142,21 @@ $DATA_MAP{nutanixcluster} = {
 	writeDiff => 0,
 	cache => 0,
 	fields => {
-        CLUSTERUUID => {},
-        CLUSTERSTATUS => {},
-        CLUSTERNAME => {},
-        CLUSTERENCRYPTION => {},
-        CLUSTERVERBOSITY => {},
-        CLUSTERRUNDFACTOR => {},
-        CLUSTERARCH => {},
-		CLUSTERAVAILABLE => {},
-		CLUSTERBUILDTYPE => {},
-		CLUSTERBUILDVERSION => {},
-		CLUSTERBUILDLTS => {},
-		CLUSTERTZ => {},
-		CLUSTEREXTNET => {},
-		CLUSTERINTNET => {},
-		CLUSTEREXTIP => {}
+	CLUSTERUUID => {},
+	CLUSTERSTATUS => {},
+	CLUSTERNAME => {},
+	CLUSTERENCRYPTION => {},
+	CLUSTERVERBOSITY => {},
+	CLUSTERRUNDFACTOR => {},
+	CLUSTERARCH => {},
+	CLUSTERAVAILABLE => {},
+	CLUSTERBUILDTYPE => {},
+	CLUSTERBUILDVERSION => {},
+	CLUSTERBUILDLTS => {},
+	CLUSTERTZ => {},
+	CLUSTEREXTNET => {},
+	CLUSTERINTNET => {},
+	CLUSTEREXTIP => {}
 	}
 };
 
