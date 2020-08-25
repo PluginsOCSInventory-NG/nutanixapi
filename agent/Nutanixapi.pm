@@ -124,6 +124,8 @@ sub nutanixapi_inventory_handler {
                 HOSTUUID => [$_->{'metadata'}->{'uuid'}],
                 HOSTSTATUS => [$_->{'status'}->{'state'}],
                 HOSTNAME => [$_->{'status'}->{'name'}],
+                HOSTCLUSTERN => [$_->{'status'}->{'cluster_reference'}->{'name'}],
+                HOSTCLUSTERID => [$_->{'status'}->{'cluster_reference'}->{'uuid'}],
                 HOSTSERIAL => [$_->{'status'}->{'resources'}->{'serial_number'}],
                 HOSTIPMI => [$_->{'status'}->{'resources'}->{'ipmi'}->{'ip'}],
                 HOSTTYPE => [$_->{'status'}->{'resources'}->{'host_type'}],

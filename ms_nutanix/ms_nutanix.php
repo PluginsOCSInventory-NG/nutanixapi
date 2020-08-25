@@ -72,6 +72,8 @@
                 $l->g(1268) => "HOSTUUID",
                 $l->g(81) => "HOSTSTATUS",
                 $l->g(49) => "HOSTNAME",
+                $l->g(37003) => "HOSTCLUSTERN",
+                $l->g(37002) => "HOSTCLUSTERID",
                 $l->g(36) => "HOSTSERIAL",
                 $l->g(37030) => "HOSTIPMI",
                 $l->g(66) => "HOSTTYPE",
