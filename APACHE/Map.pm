@@ -118,18 +118,18 @@ $DATA_MAP{nutanixhost} = {
         HOSTUUID => {},
         HOSTSTATUS => {},
         HOSTNAME => {},
-		HOSTCLUSTERN => {},
-		HOSTCLUSTERID => {},
+	HOSTCLUSTERN => {},
+	HOSTCLUSTERID => {},
         HOSTSERIAL => {},
         HOSTIPMI => {},
         HOSTTYPE => {},
         HOSTCPU => {},
-		HOSTCPUSOCKET => {},
-		HOSTCPUNUM => {},
-		HOSTMEMORY => {},
-		HOSTHVVMS => {},
-		HOSTHVIP => {},
-		HOSTHVNAME => {}
+	HOSTCPUSOCKET => {},
+	HOSTCPUNUM => {},
+	HOSTMEMORY => {},
+	HOSTHVVMS => {},
+	HOSTHVIP => {},
+	HOSTHVNAME => {}
 	}
 };
 
