@@ -56,6 +56,7 @@
                 $l->g(81) => "VMSTATUS",
                 $l->g(49) => "VMNAME",
                 $l->g(53) => "VMDESC",
+                $l->g(25) => "VMOS",
                 $l->g(37001) => "VMCLUSTER",
                 $l->g(37002) => "VMCLUSTERUUID",
                 $l->g(37003) => "VMCLUSTERNAME",
