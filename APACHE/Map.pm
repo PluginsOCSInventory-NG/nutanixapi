@@ -27,6 +27,7 @@ $DATA_MAP{nutanix} = {
 	VMSTATUS => {},
 	VMNAME => {},
 	VMDESC => {},
+	VMOS => {},
 	VMCLUSTER => {},
 	VMCLUSTERUUID => {},
 	VMCLUSTERNAME => {}
