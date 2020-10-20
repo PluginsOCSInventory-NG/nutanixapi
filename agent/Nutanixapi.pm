@@ -171,12 +171,11 @@ sub nutanixapi_inventory_handler {
                     $logger->debug("Starting nutanix infos retrival for vm ".$vmuuid);
 
                     my $os;
-                    if(exists $_->{'status'}->{'guest_tools'}){
-                        $os = $_->{'status'}->{'guest_tools'}->{'nutanix_guest_tools'}->{'guest_os_version'};
+                    if(exists $_->{'status'}->{'resources'}->{'guest_tools'}->{'nutanix_guest_tools'}){
+                        $os = $_->{'status'}->{'resources'}->{'guest_tools'}->{'nutanix_guest_tools'}->{'guest_os_version'};
                     }else{
                         $os = "Nutanix guest tools not installed";
                     }
-
                     push @{$common->{xmltags}->{NUTANIX}},
                     {
                         VMUUID => [$vmuuid],
