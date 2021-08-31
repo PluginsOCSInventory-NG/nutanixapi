@@ -75,6 +75,7 @@ function extension_install_nutanixapi()
     $commonObject -> sqlQuery("CREATE TABLE `nutanixhost` (
         `ID` INT(11) NOT NULL AUTO_INCREMENT,
         `HARDWARE_ID` INT(11) NOT NULL,
+        `NUTANIXSRVURL`  VARCHAR(255) DEFAULT NULL,
         `HOSTUUID` VARCHAR(255) DEFAULT NULL,
         `HOSTSTATUS` VARCHAR(255) DEFAULT NULL,
         `HOSTNAME` VARCHAR(255) DEFAULT NULL,
@@ -96,6 +97,7 @@ function extension_install_nutanixapi()
     $commonObject -> sqlQuery("CREATE TABLE `nutanixcluster` (
         `ID` INT(11) NOT NULL AUTO_INCREMENT,
         `HARDWARE_ID` INT(11) NOT NULL,
+        `NUTANIXSRVURL`  VARCHAR(255) DEFAULT NULL,
         `CLUSTERUUID` VARCHAR(255) DEFAULT NULL,
         `CLUSTERSTATUS` VARCHAR(255) DEFAULT NULL,
         `CLUSTERNAME` VARCHAR(255) DEFAULT NULL,

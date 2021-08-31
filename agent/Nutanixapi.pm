@@ -89,7 +89,8 @@ sub nutanixapi_inventory_handler {
             $logger->debug("Starting nutanix infos retrival for cluster ".$_->{'metadata'}->{'uuid'});
 
             push @{$common->{xmltags}->{NUTANIXCLUSTER}},
-            {
+            {   
+                NUTANIXSRVURL => [$server_url],
                 CLUSTERUUID => [$_->{'metadata'}->{'uuid'}],
                 CLUSTERSTATUS => [$_->{'status'}->{'state'}],
                 CLUSTERNAME => [$_->{'status'}->{'name'}],
@@ -121,6 +122,7 @@ sub nutanixapi_inventory_handler {
 
             push @{$common->{xmltags}->{NUTANIXHOST}},
             {
+                NUTANIXSRVURL => [$server_url],
                 HOSTUUID => [$_->{'metadata'}->{'uuid'}],
                 HOSTSTATUS => [$_->{'status'}->{'state'}],
                 HOSTNAME => [$_->{'status'}->{'name'}],
