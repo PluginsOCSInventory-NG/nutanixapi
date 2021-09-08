@@ -70,6 +70,7 @@
 
         if($protectedPost['onglet'] == "HOSTS"){
             $list_fields=array(
+                $l->g(37063) => "NUTANIXSRVURL",
                 $l->g(1268) => "HOSTUUID",
                 $l->g(81) => "HOSTSTATUS",
                 $l->g(49) => "HOSTNAME",
@@ -92,6 +93,7 @@
 
         if($protectedPost['onglet'] == "CLUSTERS"){
             $list_fields=array(
+                $l->g(37063) => "NUTANIXSRVURL",
                 $l->g(1268) => "CLUSTERUUID",
                 $l->g(81) => "CLUSTERSTATUS",
                 $l->g(49) => "CLUSTERNAME",

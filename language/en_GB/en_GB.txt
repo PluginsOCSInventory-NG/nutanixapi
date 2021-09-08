@@ -43,3 +43,4 @@
 37060 VMs List
 37061 Hosts list
 37062 Clusters list
+37063 Server URL
