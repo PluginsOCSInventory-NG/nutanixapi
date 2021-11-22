@@ -185,6 +185,7 @@ sub nutanixapi_inventory_handler {
                         VMNAME => [$_->{'status'}->{'name'}],
                         VMDESC => [$_->{'status'}->{'description'}],
                         VMOS => [$os],
+                        VMPOWERSTATE => [$_->{'status'}->{'resources'}->{'power_state'}],
                         VMCLUSTER => [$_->{'status'}->{'cluster_reference'}->{'kind'}],
                         VMCLUSTERUUID => [$_->{'status'}->{'cluster_reference'}->{'uuid'}],
                         VMCLUSTERNAME => [$_->{'status'}->{'cluster_reference'}->{'name'}],
@@ -199,7 +200,6 @@ sub nutanixapi_inventory_handler {
                         RESPROTECTED => [$_->{'status'}->{'resources'}->{'protection_type'}],
                         RESMEMORY => [$_->{'status'}->{'resources'}->{'memory_size_mib'}],
                         RESHWTIMEZONE => [$_->{'status'}->{'resources'}->{'hardware_clock_timezone'}],
-                        RESPOWERSTATE => [$_->{'status'}->{'resources'}->{'power_state'}],
                         RESHYPERVISORTYPE => [$_->{'status'}->{'resources'}->{'hypervisor_type'}],
                     };
 

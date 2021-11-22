@@ -57,6 +57,7 @@
                 $l->g(49) => "VMNAME",
                 $l->g(53) => "VMDESC",
                 $l->g(25) => "VMOS",
+                $l->g(37012) => "VMPOWERSTATE",
                 $l->g(37001) => "VMCLUSTER",
                 $l->g(37002) => "VMCLUSTERUUID",
                 $l->g(37003) => "VMCLUSTERNAME",
@@ -162,7 +163,6 @@
                 $l->g(37009) => 'RESPROTECTED',
                 $l->g(37010) => 'RESMEMORY',
                 $l->g(37011) => 'RESHWTIMEZONE',
-                $l->g(37012) => 'RESPOWERSTATE',
                 $l->g(37013) => 'RESHYPERVISORTYPE',
             );
         }
