@@ -28,6 +28,7 @@ $DATA_MAP{nutanix} = {
 	VMNAME => {},
 	VMDESC => {},
 	VMOS => {},
+	VMPOWERSTATE => {},
 	VMCLUSTER => {},
 	VMCLUSTERUUID => {},
 	VMCLUSTERNAME => {}
@@ -50,7 +51,6 @@ $DATA_MAP{nutanixresources} = {
 	RESPROTECTED => {},
 	RESMEMORY => {},
 	RESHWTIMEZONE => {},
-	RESPOWERSTATE => {},
 	RESHYPERVISORTYPE => {}
 	}
 };
