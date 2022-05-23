@@ -39,7 +39,7 @@
         $def_onglets['CLUSTERS'] = $l->g(37062); 
 
         //default => first onglet
-        if ($protectedPost['onglet'] == "") {
+        if (empty($protectedPost['onglet'])) {
             $protectedPost['onglet'] = "VMS";
         }
 
